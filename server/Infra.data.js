@@ -38,7 +38,7 @@ var server = http.createServer(function (req, res) {
 		if(req.method == 'POST') {
 			console.log('BODY: ' + chunk);
 			console.log('BODY length: ' + chunk.length);
-			var body = yaml.load(chunk);
+			var body = yaml.safeLoad(chunk);
 			
 			if (body.hasOwnProperty("cod")) {
 				key = body.cod + "." + body.tag + "." + body.author;
@@ -86,7 +86,7 @@ var server = http.createServer(function (req, res) {
 		} 
 		if(req.method == 'PUT') {
 			console.log('BODY: ' + chunk);
-			var body = yaml.load(chunk);
+			var body = yaml.safeLoad(chunk);
 			
 			var filename;
 			if (body.hasOwnProperty("cod")) {
@@ -131,7 +131,7 @@ var server = http.createServer(function (req, res) {
 			fs.exists(realPath, function (exists) {
 				if (!exists) {
 					res.writeHead(404, {'Content-Type': 'text/plain'});
-					res.write("访问路径没有找到。","utf8");
+					res.write("路脙脦脢脗路戮露脙禄脫脨脮脪碌陆隆拢","utf8");
 					res.end();
 				} else {
 					//fs.createReadStream(realPath).pipe(res)
